@@ -14,6 +14,8 @@ Vue.use(VueDarkMode, {
     'divider',
     'icon',
     'spinner',
+    'badge',
+    'button',
   ],
 });
 

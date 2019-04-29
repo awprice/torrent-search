@@ -19,6 +19,7 @@ const torrents = async (parent, { keywords, minSeeders, minLeechers }) => {
       min_seeders: typeof minSeeders !== 'undefined' ? minSeeders : null,
       min_leechers: typeof minLeechers !== 'undefined' ? minLeechers : null,
       format: 'json_extended',
+      limit: 100,
     });
   } catch (e) {
     console.error(e); // eslint-disable-line

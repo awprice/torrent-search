@@ -4,13 +4,17 @@
       <dm-spinner color="blue" size="large"/>
     </div>
     <div v-if="!loading">
-      <torrent
-        v-for="torrent in torrents"
-        :key="torrent.download"
-        :torrent="torrent"
-      />
+      <div v-if="torrents.length">
+        <torrent
+          v-for="torrent in torrents"
+          :key="torrent.download"
+          :torrent="torrent"
+          :mode="mode"
+        />
+        <p class="results-limit" v-if="showLimitText">Results limited to 100 entries</p>
+      </div>
       <div v-if="!torrents.length" class="text-center no-results">
-        <p>No results found</p>
+        <p>{{ emptyText }}</p>
       </div>
     </div>
   </div>
@@ -28,8 +32,20 @@ export default {
       type: Array,
     },
     loading: {
-      required: true,
       type: Boolean,
+      default: false,
+    },
+    showLimitText: {
+      type: Boolean,
+      default: true,
+    },
+    emptyText: {
+      type: String,
+      default: 'No results found',
+    },
+    mode: {
+      type: String,
+      default: 'search',
     },
   },
 };
@@ -37,6 +53,10 @@ export default {
 
 <style scoped>
   .no-results p {
+    color: #999;
+  }
+
+  .results-limit {
     color: #999;
   }
 </style>

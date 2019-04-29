@@ -1,5 +1,23 @@
 <template>
   <div class="torrent">
+    <dm-button
+      class="add-button"
+      size="mini"
+      type="button"
+      leftIcon="add_circle"
+      color="blue"
+      v-on:click="queueAdd"
+      v-if="mode === 'search'"
+    >Add to Queue</dm-button>
+    <dm-button
+      class="add-button"
+      size="mini"
+      type="button"
+      leftIcon="remove_circle"
+      color="red"
+      v-on:click="queueRemove"
+      v-if="mode === 'queue'"
+    >Remove</dm-button>
     <p class="title-link"><a :href="torrent.info_page" target="_blank">{{ torrent.title }}</a></p>
     <div class="details-holder">
       <p class="magnet-link">
@@ -17,12 +35,16 @@
         {{ torrent.leechers }} Leechers
       </p>
       <p class="size">{{ size }}</p>
+      <p>
+        <dm-badge size="mini" color="purple">{{ torrent.category }}</dm-badge>
+      </p>
     </div>
   </div>
 </template>
 
 <script>
 import prettyBytes from 'pretty-bytes';
+import mutationTypes from '../store/types';
 
 export default {
   name: 'Torrent',
@@ -30,6 +52,18 @@ export default {
     torrent: {
       required: true,
       type: Object,
+    },
+    mode: {
+      type: String,
+      default: 'search',
+    },
+  },
+  methods: {
+    queueAdd() {
+      this.$store.commit(`app/${mutationTypes.ADD_TORRENT_TO_QUEUE}`, this.torrent);
+    },
+    queueRemove() {
+      this.$store.commit(`app/${mutationTypes.REMOVE_TORRENT_FROM_QUEUE}`, this.torrent);
     },
   },
   computed: {
@@ -86,5 +120,10 @@ export default {
 
   .size {
     color: #0194EF;
+  }
+
+  .add-button {
+    float: right;
+    margin: 8px 10px 0 0;
   }
 </style>

@@ -1,11 +1,18 @@
 <template>
   <div>
-    <header-panel/>
+    <dm-heading class="header" tag="h3">Torrent Search</dm-heading>
     <controls/>
     <dm-divider/>
     <torrent-list
       :torrents="filteredTorrents"
       :loading="$apolloData.loading > 0"
+    />
+    <dm-divider/>
+    <dm-heading class="header" tag="h3">Queue</dm-heading>
+    <torrent-list
+      :torrents="queue"
+      mode="queue"
+      empty-text="No torrents in queue"
     />
   </div>
 </template>
@@ -13,7 +20,6 @@
 <script>
 import gql from 'graphql-tag';
 import { mapGetters } from 'vuex';
-import HeaderPanel from './HeaderPanel';
 import Controls from './Controls';
 import TorrentList from './TorrentList';
 
@@ -28,13 +34,13 @@ export default {
     ...mapGetters({
       keywords: 'app/keywords',
       onlyTorrentsWithSeeders: 'app/onlyTorrentsWithSeeders',
+      queue: 'app/queue',
     }),
 
     filteredTorrents() {
-      return this.torrents.filter((torrent) => {
-        // Filter out torrents with no seeders
-        return !(this.onlyTorrentsWithSeeders && torrent.seeders <= 0);
-      });
+      return this.torrents.filter(torrent =>
+      // Filter out torrents with no seeders
+        !(this.onlyTorrentsWithSeeders && torrent.seeders <= 0));
     },
   },
   apollo: {
@@ -60,7 +66,6 @@ export default {
     },
   },
   components: {
-    HeaderPanel,
     TorrentList,
     Controls,
   },
@@ -70,5 +75,9 @@ export default {
 <style scoped>
   .dm-base-divider {
     margin: 30px auto !important;
+  }
+
+  .header {
+    margin-bottom: 20px;
   }
 </style>
