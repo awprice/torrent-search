@@ -11,6 +11,7 @@
       class="torrent-search-input"
       name="torrent-search"
       placeholder="Search for torrents..."
+      size="small"
     ></dm-input>
   </div>
 </template>
@@ -38,7 +39,6 @@ export default {
       },
     },
   },
-
 };
 </script>
 
@@ -48,6 +48,7 @@ export default {
   }
 
   .torrent-search-input {
-    margin-bottom: 0;
+    margin-bottom: 15px;
+    width: 500px;
   }
 </style>

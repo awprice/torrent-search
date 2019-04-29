@@ -2,15 +2,16 @@
   <div>
     <dm-heading class="header" tag="h3">Torrent Search</dm-heading>
     <controls/>
-    <dm-divider/>
     <torrent-list
       :torrents="filteredTorrents"
       :loading="$apolloData.loading > 0"
     />
     <dm-divider/>
     <dm-heading class="header" tag="h3">Queue</dm-heading>
+    <queue-controls/>
     <torrent-list
       :torrents="queue"
+      :showLimitText="false"
       mode="queue"
       empty-text="No torrents in queue"
     />
@@ -22,6 +23,7 @@ import gql from 'graphql-tag';
 import { mapGetters } from 'vuex';
 import Controls from './Controls';
 import TorrentList from './TorrentList';
+import QueueControls from './QueueControls';
 
 export default {
   name: 'Page',
@@ -66,6 +68,7 @@ export default {
     },
   },
   components: {
+    QueueControls,
     TorrentList,
     Controls,
   },

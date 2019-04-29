@@ -7,6 +7,8 @@ const initialState = () => ({
   keywords: '',
   onlyTorrentsWithSeeders: false,
   queue: [],
+  delugeUrl: '',
+  delugePassword: '',
 });
 
 const state = initialState();
@@ -14,6 +16,8 @@ const getters = {
   keywords: state => state.keywords,
   onlyTorrentsWithSeeders: state => state.onlyTorrentsWithSeeders,
   queue: state => state.queue,
+  delugeUrl: state => state.delugeUrl,
+  delugePassword: state => state.delugePassword,
 };
 const actions = {};
 const mutations = {
@@ -53,6 +57,22 @@ const mutations = {
    */
   [types.REMOVE_TORRENT_FROM_QUEUE](state, torrent) {
     state.queue = state.queue.filter(item => item.download !== torrent.download);
+  },
+
+  /**
+   * @param state
+   * @param delugeUrl
+   */
+  [types.SET_DELUGE_URL](state, delugeUrl) {
+    state.delugeUrl = delugeUrl;
+  },
+
+  /**
+   * @param state
+   * @param delugePassword
+   */
+  [types.SET_DELUGE_PASSWORD](state, delugePassword) {
+    state.delugePassword = delugePassword;
   },
 };
 
