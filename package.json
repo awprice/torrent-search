@@ -19,7 +19,7 @@
     "eslint-plugin-import": "^2.17.2",
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.15",
     "netlify-lambda": "^1.4.5",
     "pretty-bytes": "^5.2.0",
     "rarbg-api": "^1.1.3",
