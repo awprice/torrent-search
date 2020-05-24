@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import Torrent from './Torrent';
+import Torrent from './Torrent.vue';
 
 export default {
   name: 'TorrentList',

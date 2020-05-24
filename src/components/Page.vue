@@ -21,9 +21,9 @@
 <script>
 import gql from 'graphql-tag';
 import { mapGetters } from 'vuex';
-import Controls from './Controls';
-import TorrentList from './TorrentList';
-import QueueControls from './QueueControls';
+import Controls from './Controls.vue';
+import TorrentList from './TorrentList.vue';
+import QueueControls from './QueueControls.vue';
 
 export default {
   name: 'Page',
@@ -40,9 +40,12 @@ export default {
     }),
 
     filteredTorrents() {
-      return this.torrents.filter(torrent =>
+      let tmp = this.torrents;
       // Filter out torrents with no seeders
-        !(this.onlyTorrentsWithSeeders && torrent.seeders <= 0));
+      if (this.onlyTorrentsWithSeeders) {
+        tmp = tmp.filter(torrent => torrent.seeders > 0);
+      }
+      return tmp;
     },
   },
   apollo: {
