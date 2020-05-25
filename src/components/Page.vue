@@ -40,6 +40,9 @@ export default {
     }),
 
     filteredTorrents() {
+      if (typeof this.torrents === 'undefined') {
+        return [];
+      }
       let tmp = this.torrents;
       // Filter out torrents with no seeders
       if (this.onlyTorrentsWithSeeders) {

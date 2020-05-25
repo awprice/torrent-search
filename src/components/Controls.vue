@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import debounce from 'lodash/debounce';
 import mutationTypes from '../store/types';
 
 export default {
@@ -26,9 +27,9 @@ export default {
       get() {
         return this.$store.state.app.keywords;
       },
-      set(value) {
+      set: debounce(function (value) { // eslint-disable-line
         this.$store.commit(`app/${mutationTypes.SET_KEYWORDS}`, value);
-      },
+      }, 350),
     },
     onlyTorrentsWithSeeders: {
       get() {
