@@ -11,7 +11,7 @@
   "dependencies": {
     "@ctrl/deluge": "^1.8.1",
     "apollo-link": "^1.2.14",
-    "apollo-server-lambda": "^2.13.1",
+    "apollo-server-lambda": "^2.14.2",
     "axios": "^0.19.2",
     "bufferutil": "^4.0.1",
     "cacache": "^15.0.3",
