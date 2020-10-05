@@ -48,6 +48,10 @@ export default {
       if (this.onlyTorrentsWithSeeders) {
         tmp = tmp.filter(torrent => torrent.seeders > 0);
       }
+
+      // Sort torrents by seeders
+      tmp = tmp.sort((a, b) => (a.seeders < b.seeders ? 1 : -1));
+
       return tmp;
     },
   },
