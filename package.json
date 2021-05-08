@@ -21,7 +21,7 @@
     "eslint-plugin-import": "^2.22.1",
     "graphql": "^14.7.0",
     "graphql-tag": "^2.11.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "netlify-lambda": "^1.6.3",
     "pretty-bytes": "^5.4.1",
     "utf-8-validate": "^5.0.2",
