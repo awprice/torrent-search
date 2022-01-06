@@ -12,11 +12,16 @@ const DEFAULT_LIMIT = 100;
  * @returns {Promise<*[]|*>}
  */
 const searchTorrents = async (keywords, limit, minSeeders, minLeechers) => {
+  console.log(`Keywords: ${keywords}`);
   const token = await torrentAPI.getToken();
   if (token === null) {
     return [];
   }
-  const torrents = await torrentAPI.searchTorrents(token, keywords, limit);
+  let mode = 'string';
+  if (keywords.slice(0, 2) === 'tt') {
+    mode = 'imdb';
+  }
+  const torrents = await torrentAPI.searchTorrents(token, keywords.trim(), limit, mode);
   return torrents !== null ? torrents : [];
 };
 
